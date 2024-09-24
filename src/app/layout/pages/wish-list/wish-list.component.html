@@ -1,0 +1,47 @@
+<section class="  my-2 py-3  ">
+   
+        @for (product of productsWishlist; track product.id) {
+          
+              <div class=" bg-gray-50 p-2 mx-20 my-2">
+
+
+              <div class="flex flex-wrap items-center">
+              
+                <div class="w-2/12 p-2">
+                    <img [src]="product.imageCover" class="w-full" [alt]="product.title">
+                </div>
+
+               
+               <div class="w-7/12 ">
+                <h3 class="h6 font-bold"> {{product.title.split(" ", 4).join(" ")}}</h3>
+               
+                <span class="text-main font-bold">  {{product.price }} EGP</span>
+
+                <div class="flex flex-wrap items-center">
+                    <p class= "text-red-500">Remove</p>
+
+                    <i (click)="removeProductWishlist(product.id)" class="fa-solid fa-trash cursor-pointer text-red-500 "></i>
+                </div>    
+
+               </div>
+
+               <div class="w-3/12 flex gap-5 items-center">
+                <button (click)=" addProduct(product.id)" class="btn-main ">Add to Cart</button>
+               </div>
+
+              
+                
+              </div>
+              
+
+               
+
+            </div>
+       
+         
+        }@empty {
+          <h4 class="text-main ">No products in your wishlist</h4>
+        }
+   
+  </section>
+  

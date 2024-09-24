@@ -1,0 +1,16 @@
+<section class="py-9">
+    <div class="container m-auto">
+       
+        <div class="flex justify-center    items-center flex-wrap p-3 ">
+           @for (item of all_catagory; track $index) {
+            <div [routerLink]="['/product',item._id]" (click)="show_sup(item._id,item.name)" class="lg:w-[25%]   product lg:w-3/12 mt-6 mr-2 ml-2">
+                <div class="" >
+                    <img [src]="item.image" class="w-full height" alt="cate">
+                    <p class="font-bold text-xl text-center p-2 text-main">{{item.name}}</p>
+                </div>
+            </div>
+           }
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,66 @@
+
+<div class="w-3/4 mx-auto py-16"> 
+   <div class="flex justify-between items-center ">
+
+    <h2 class="text-main text-center text-3xl font-bold ">Shop cart : </h2> 
+
+    <div class="py-4">
+        <button class=" btn-main " (click)="clearCart()" >Clear Cart</button>
+      </div>
+     
+   </div>
+ 
+    @if (myCart?.data?.products?.length !==0) { 
+       <div class="py-3 flex justify-between items-center "> 
+       <div>
+        <h5 class=" mb-3">total price :{{myCart?.data?.totalCartPrice}}</h5> 
+        
+     
+        <button class=" btn-main" [routerLink]="['/checkout',myCart.cartId]">Payment</button> 
+
+       </div>
+        
+      
+      </div>
+       
+    }  
+        
+      
+ 
+ 
+ 
+  @for (product of myCart?.data?.products; track $index) { 
+ 
+    <div class="flex flex-wrap items-center"> 
+        <div class="w-2/12 p-5"> 
+            <img [src]="product.product.imageCover" class="w-full" [alt]="product.product.title"> 
+        </div> 
+ 
+        <div class="w-7/12"> 
+            <h2>{{product.product.title}}</h2> 
+            <br> 
+            <span>Price : {{product.price}}</span> 
+            <br><br> 
+            <span class="flex flex-wrap items-center "> 
+                <p class= "text-red-500">Remove</p> 
+ 
+                <i class="fa solid fa-trash text-green-500 ps-3 cursor-pointer " (click)="removeItem(product.product._id)"></i> 
+            </span> 
+             
+        </div> 
+ 
+        <div class="w-3/12 flex gap-5 items-center"> 
+            <i class="fa-solid fa-plus-circle cursor-pointer" (click)="updateQuantity(product.product._id,product.count+1)"></i> 
+            <span>{{product.count}}</span> 
+            <i class="fa-solid fa-minus-circle cursor-pointer"(click)="updateQuantity(product.product._id,product.count-1)"></i> 
+        </div> 
+    </div> 
+  } 
+  @empty { 
+    <div class="w-1/3"> 
+        <img src="./assets/images/emptycart.jpg" class="w-full" alt=""> 
+    </div>     
+    } 
+    
+   
+</div>
